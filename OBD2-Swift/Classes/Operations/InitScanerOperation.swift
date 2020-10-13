@@ -56,8 +56,8 @@ class InitScanerOperation: StreamHandleOperation {
     private var state: Scanner.State = .unknown {
         didSet{
             if state == .complete {
-                input.remove(from: .current, forMode: .defaultRunLoopMode)
-                output.remove(from: .current, forMode: .defaultRunLoopMode)
+                input.remove(from: .current, forMode: RunLoop.Mode.default)
+                output.remove(from: .current, forMode: RunLoop.Mode.default)
             }
         }
     }
@@ -193,10 +193,10 @@ class InitScanerOperation: StreamHandleOperation {
 }
 
 fileprivate func buildSupportedSensorList(data : Data, pidGroup : Int) -> Bool {
-    
-    let bytes = data.withUnsafeBytes {
-        [UInt8](UnsafeBufferPointer(start: $0, count: data.count))
-    }
+    let bytes = data.withUnsafeBytes { $0.load(as: [UInt8].self) }
+//    let bytes = data.withUnsafeBytes {
+//        [UInt8](UnsafeBufferPointer(start: $0, count: data.count))
+//    }
     
     let bytesLen = bytes.count
     

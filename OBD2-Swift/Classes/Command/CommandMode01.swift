@@ -10,11 +10,11 @@ import Foundation
 
 public extension Command {
   
-  public enum Mode01 : CommandType {
+    enum Mode01 : CommandType {
     
     public typealias Descriptor = Mode01Descriptor
     
-    public var hashValue: Int {
+    public var hashVal: Int {
       switch self {
       case .pid(number : let pid):
         return Int(mode.rawValue) ^ pid
@@ -22,7 +22,7 @@ public extension Command {
     }
     
     public static func ==(lhs: Mode01, rhs: Mode01) -> Bool {
-      return lhs.hashValue == rhs.hashValue
+      return lhs.hashVal == rhs.hashVal
     }
     
     case pid(number : Int)

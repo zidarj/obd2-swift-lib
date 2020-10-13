@@ -10,7 +10,7 @@ import Foundation
 
 
 public extension Command {
-  public enum Mode09 : CommandType {
+    enum Mode09 : CommandType {
     
     public typealias Descriptor = Mode09Descriptor
     
@@ -21,10 +21,10 @@ public extension Command {
     case ECUname
     
     public static func == (lhs: Mode09, rhs: Mode09) -> Bool {
-      return lhs.hashValue == rhs.hashValue
+      return lhs.hashVal == rhs.hashVal
     }
     
-    public var hashValue: Int {
+    public var hashVal: Int {
       return Int(mode.rawValue ^ pid)
     }
     

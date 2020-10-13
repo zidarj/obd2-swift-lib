@@ -21,7 +21,7 @@ public struct Response : Hashable, Equatable {
     self.timestamp = Date()
   }
   
-  public var hashValue: Int {
+  public var hashVal: Int {
     return Int(mode.rawValue ^ pid)
   }
   

@@ -39,7 +39,8 @@ class StreamWriter {
         var totalBytesWritten = 0
         
         while bytesRemaining > 0 {
-            let bytesWritten = data.withUnsafeBytes {
+            let bytesWritten: Int = data.withUnsafeBytes {
+                stream.write($0, maxLength: bytesRemaining)
                 stream.write(
                     $0.advanced(by: totalBytesWritten),
                     maxLength: bytesRemaining
